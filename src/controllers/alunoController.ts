@@ -18,7 +18,7 @@ export class alunoController {
     }
     put(req: Request, res: Response): Response {
         const ra = req.params;
-        const alunoAtual = this.alunos.find
+        const alunoAtual = this.alunos.find()
 
 
         return res.
