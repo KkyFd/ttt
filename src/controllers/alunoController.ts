@@ -16,4 +16,11 @@ export class alunoController {
         this.alunos.push(novoAluno);
         return res.status(201).json(novoAluno);
     }
+    put(req: Request, res: Response): Response {
+        const ra = req.params;
+        const alunoAtual = this.alunos.find
+
+
+        return res.
+    }
 }
