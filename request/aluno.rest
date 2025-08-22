@@ -1,0 +1,5 @@
+### POST
+
+GET http://localhost:3000/aluno HTTP/1.1
+
+### POST
