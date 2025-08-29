@@ -9,7 +9,7 @@ const options = {
             description: "API feita em aula"
         },
         servers: [
-            {url: "localhost:3000", description: "Servidor feito em aula, host local"},
+            {url: "http://localhost:3000", description: "Servidor feito em aula, host local"},
         ]
     },
     apis: ["./src/routes/*.ts", "./src/controllers/*.ts"]
