@@ -17,10 +17,15 @@ export class alunoController {
         return res.status(201).json(novoAluno);
     }
     put(req: Request, res: Response): Response {
-        const ra = req.params;
-        const alunoAtual = this.alunos.find()
+        const ra = req.params.ra;
+        let {t, e} = req.body;
 
+        const aluno = this.alunos.findIndex(v => v.ra === ra);
+        console.log(t);
+        console.log(e);
+        if (aluno === -1){return res.status(404).json({error: "xd"})}
 
-        return res.
+        this.alunos[aluno] = { ra: ra, nome: e};
+        return res.json({ ra: ra, nome: e});
     }
 }
