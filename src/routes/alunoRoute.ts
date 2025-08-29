@@ -40,6 +40,21 @@ const aluno = new alunoController();
 
 alunoRouter.get("/", (req, res) => aluno.get(req, res));
 alunoRouter.post("/", (req,res) => aluno.post(req, res));
+
+/**
+ * @swagger
+ * /aluno:
+ *  post:
+ *      summary: Cadastrar um aluno
+ *      tags: [Aluno]
+ *      responses:
+ *          201:
+ *              description: Aluno criado
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Aluno'
+ */
 alunoRouter.put("/:ra", (req,res) => aluno.put(req, res));
 
 export default alunoRouter;
