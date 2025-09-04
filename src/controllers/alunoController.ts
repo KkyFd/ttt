@@ -18,14 +18,12 @@ export class alunoController {
     }
     put(req: Request, res: Response): Response {
         const ra = req.params.ra;
-        let {t, e} = req.body;
+        let {e} = req.body;
 
         const aluno = this.alunos.findIndex(v => v.ra === ra);
-        console.log(t);
-        console.log(e);
         if (aluno === -1){return res.status(404).json({error: "xd"})}
 
         this.alunos[aluno] = { ra: ra, nome: e};
-        return res.json({ ra: ra, nome: e});
+        return res.status(204).json({ ra: ra, nome: e});
     }
 }

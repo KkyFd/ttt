@@ -20,7 +20,7 @@ const aluno = new alunoController();
  *                  type: string
  *                  description: RA do aluno
  */
-
+alunoRouter.get("/", (req, res) => aluno.get(req, res));
 /**
  * @swagger
  * /aluno:
@@ -37,9 +37,45 @@ const aluno = new alunoController();
  *                          items:
  *                              $ref: '#/components/schemas/Aluno'
  */
-
-alunoRouter.get("/", (req, res) => aluno.get(req, res));
 alunoRouter.post("/", (req,res) => aluno.post(req, res));
+/**
+ * @swagger
+ * /aluno:
+ *  post:
+ *      summary: Cadastrar um aluno
+ *      tags: [Aluno]
+ *      requestBody:
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/Aluno'
+ *      responses:
+ *          201:
+ *              description: Aluno criado
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Aluno'
+ */
 alunoRouter.put("/:ra", (req,res) => aluno.put(req, res));
+/**
+ * @swagger
+ * /aluno:
+ *  put:
+ *      summary: Alterar um aluno
+ *      tags: [Aluno]
+ *      requestBody:
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/Aluno'   
+ *      responses:
+ *          204:
+ *              description: Aluno modificado
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Aluno'
+ */
 
 export default alunoRouter;
