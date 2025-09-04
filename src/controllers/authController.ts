@@ -7,17 +7,17 @@ const JWT_SECRET = process.env.JWT_SECRET || "";
 interface LoginUser {
     id: number,
     email: string,
-    password: string,
-    name: string
+    senha: string,
+    nome: string
 }
 
 export class AuthController {
     private users: LoginUser[] = [];
 
     async register(req: Request, res: Response): Promise<Response> {
-        const {name, password, email} = req.body;
+        const {nome, senha, email} = req.body;
 
-        if (!name || !password || !email) {
+        if (!nome || !senha || !email) {
             return res.status(400).json({mensagem: "lol"});
         }
 
@@ -26,27 +26,27 @@ export class AuthController {
             return res.status(400).json({mensagem: "Email já cadastrado"});
         }
 
-        const passHash = await bcrypt.hash(password, 10);
+        const passHash = await bcrypt.hash(senha, 10);
 
-        const novoUsuario: LoginUser = {id: this.users.length + 1, name, password: passHash, email};
+        const novoUsuario: LoginUser = {id: this.users.length + 1, nome, senha: passHash, email};
 
         this.users.push(novoUsuario);
 
         return res.status(201).json({mensagem: "Usuário cadastrado"});
     }
     async login(req: Request, res: Response): Promise<Response> {
-        const {password, email} = req.body;
+        const {senha, email} = req.body;
 
         const usuario = this.users.find(u => u.email === email);
         if(!usuario) {
             return res.status(401).json({mensagem: "lol2"});
         }
 
-        const senhaValida = await bcrypt.compare(password, usuario.password);
+        const senhaValida = await bcrypt.compare(senha, usuario.senha);
         if (!senhaValida) {
             return res.status(401).json({mensagem: "Senha incorreta"});
         }
-        const token = jwt.sign({nomeD: usuario.name}, JWT_SECRET, {expiresIn: "1h"});
+        const token = jwt.sign({nomeD: usuario.nome}, JWT_SECRET, {expiresIn: "1h"});
 
         return res.status(200);
     }
