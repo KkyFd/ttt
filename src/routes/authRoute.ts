@@ -1,7 +1,7 @@
 import {Router} from "express";
 import { AuthController } from "../controllers/authController";
 
-const router = Router();
+const authRouter = Router();
 const authController = new AuthController();
 
 
@@ -42,7 +42,7 @@ const authController = new AuthController();
  *       401:
  *         description: Credenciais inválidas
  */
-router.post("/login", (req,res) => authController.login(req, res));
+authRouter.post("/login", (req,res) => authController.login(req, res));
 
 
 /**
@@ -74,6 +74,6 @@ router.post("/login", (req,res) => authController.login(req, res));
  *       400:
  *         description: Dados inválidos
  */
-router.post("/registro", (req,res) => authController.register(req, res));
+authRouter.post("/registro", (req,res) => authController.register(req, res));
 
-export default router;
+export default authRouter;
