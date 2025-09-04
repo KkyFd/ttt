@@ -8,6 +8,15 @@ const options = {
             version: "1.0.0",
             description: "API feita em aula"
         },
+        components: {
+            SecuritySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT"
+                }
+            }
+        },
         servers: [
             {url: "http://localhost:3000", description: "Servidor feito em aula, host local"},
         ]
