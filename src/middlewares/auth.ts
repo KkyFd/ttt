@@ -9,6 +9,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     if(!token) {
         return res.status(401);
     }
-
+    jwt.verify(token, JWT_SECRET);
     next();
 }
