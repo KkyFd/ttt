@@ -71,6 +71,8 @@ alunoRouter.put("/:ra", (req,res) => aluno.put(req, res));
  *  put:
  *      summary: Alterar um aluno
  *      tags: [Aluno]
+ *      security:
+ *          - bearerAuth: []
  *      requestBody:
  *          content:
  *              application/json:
