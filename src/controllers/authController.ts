@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-const JWT_SECRET = process.env.JWT_SECRET || "";
+const JWT_SECRET = process.env.JWT_SECRET || "XD";
 
 interface LoginUser {
     id: number,

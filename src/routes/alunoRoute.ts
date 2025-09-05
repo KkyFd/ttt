@@ -1,8 +1,11 @@
 import {Router} from "express";
 import {alunoController} from "../controllers/alunoController";
+import { authMiddleware } from "../middlewares/auth";
 
 const alunoRouter = Router();
 const aluno = new alunoController();
+
+alunoRouter.use(authMiddleware);
 /**
  * @swagger
  * components:
@@ -27,6 +30,8 @@ alunoRouter.get("/", (req, res) => aluno.get(req, res));
  *  get:
  *      summary: Lista todos os alunos
  *      tags: [Aluno]
+ *      security:
+ *          - bearerAuth: []
  *      responses:
  *          200:
  *              description: Lista de alunos
@@ -44,6 +49,8 @@ alunoRouter.post("/", (req,res) => aluno.post(req, res));
  *  post:
  *      summary: Cadastrar um aluno
  *      tags: [Aluno]
+ *      security:
+ *          - bearerAuth: []
  *      requestBody:
  *          content:
  *              application/json:
