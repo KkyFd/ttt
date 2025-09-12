@@ -1,22 +1,25 @@
 import {Request, Response} from "express";
-
-interface Aluno {
-    ra: String;
-    nome: String;
-}
+import { AlunoService } from "../services/AlunoService";
 
 export class alunoController {
-    private alunos: Aluno[] = [];
-    get(req: Request, res: Response): Response {
-        return res.json(this.alunos);
+    private alunoService:  AlunoService;
+
+    constructor () {
+        this.alunoService = new AlunoService();
     }
-    post(req: Request, res: Response): Response {
-        const {ra, nome} = req.body;
-        const novoAluno: Aluno = {ra: ra, nome: nome};
-        this.alunos.push(novoAluno);
+    async get(req: Request, res: Response): Promise<Response> {
+        const alunos = await this.alunoService.getAll();
+        return res.json(alunos);
+    }
+    async post(req: Request, res: Response): Promise<Response> {
+        const {ra, nome, email} = req.body;
+
+        const novoAluno = await this.alunoService.create({
+            ra, nome, email
+        });
         return res.status(201).json(novoAluno);
     }
-    put(req: Request, res: Response): Response {
+    async put(req: Request, res: Response): Promise<Response> {
         const ra = req.params.ra;
         let {e} = req.body;
 
